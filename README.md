@@ -12,4 +12,5 @@ delimited continuations based on the code here.
 
 I've managed to define a simple dfs search for cycle detection and I plan to
 "stress test" the generality of the method by implementing a few more
-leetcode graph algorithms.
+leetcode graph algorithms. I'm quite sick of leetcode problems and
+this is my way of at least getting some joy out of it.
