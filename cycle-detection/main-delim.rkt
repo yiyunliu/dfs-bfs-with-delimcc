@@ -22,21 +22,25 @@
 ;; singleton 'Done
 
 (define (dfs-node graph node)
-  (reset
-   (let loop ([node node])
-     (define visit? (shift k (Discovered node k)))
-     (when visit?
-       (for ([target (neighbors graph node)])
-         (loop target)))
-     (shift k (Processed node k))
-     'Done)))
+  (let loop ([node node])
+    (define visit? (shift k (Discovered node k)))
+    (when visit?
+      (for ([target (neighbors graph node)])
+        (loop target)))
+    (shift k (Processed node k))
+    'Done))
 
-(define (node-cyclic? graph node)
+(define (dfs-graph graph)
+  (for ([node (in-range (vector-length graph))])
+    (dfs-node graph node))
+  'Done)
+
+(define (graph-cyclic? graph)
   (define size (vector-length graph))
   (define discovered (make-vector size #f))
   (define processed (make-vector size #f))
   (let/cc return
-    (let loop ([event (dfs-node graph node)])
+    (let loop ([event (reset (dfs-graph graph))])
       (match event
         [(Discovered node k)
          (cond
@@ -60,5 +64,8 @@
         ['Done
          (return false)]))))
 
+(define (can-finish num-courses prereqs)
+  (define graph (make-graph num-courses (map (lambda (x) (cons (first x) (second x))) prereqs)))
+  (not (graph-cyclic? graph)))
 
-(provide node-cyclic?)
+(provide graph-cyclic? graph? make-graph can-finish)
