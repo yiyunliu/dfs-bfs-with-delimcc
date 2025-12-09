@@ -5,9 +5,12 @@ pretty much the same with OCaml's effects.
 
 If you are really interested in delimited continuations, you should
 probably consider reading [this book](https://xavierleroy.org/control-structures/book/index.html) by Xavier Leroy.
+You should also check out [the lecture notes and Rocq
+mechanization](https://github.com/sweirich/pl-semantics-and-types) by
+my advisor.
 
 
-The repo is currently undocumented and I might write a tutorial on
+This repo is currently undocumented and I might write a tutorial on
 delimited continuations based on the code here.
 
 I've managed to define a simple dfs search for cycle detection and I plan to
